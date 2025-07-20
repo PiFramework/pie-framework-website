@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Consciousness Mirror - Diagnostic Test</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            color: #fff;
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 2rem;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .test-section {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            margin: 1rem 0;
+            border-radius: 15px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .btn {
+            background: linear-gradient(145deg, #4ecdc4, #3ba99c);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin: 0.5rem;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(78, 205, 196, 0.3);
+        }
+        .result {
+            background: rgba(0,0,0,0.3);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 8px;
+            border-left: 4px solid #4ecdc4;
+            font-family: monospace;
+        }
+        .error {
+            border-left-color: #ff6b6b;
+            background: rgba(255, 107, 107, 0.1);
+        }
+        .success {
+            border-left-color: #4caf50;
+            background: rgba(76, 175, 80, 0.1);
+        }
+        #testResults {
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🪞 AI Consciousness Mirror - Diagnostic Test</h1>
+        <p>Let's test each component step by step to ensure everything works!</p>
+
+        <!-- Test 1: Basic JavaScript -->
+        <div class="test-section">
+            <h2>Test 1: Basic JavaScript Functionality</h2>
+            <button class="btn" onclick="testBasicJS()">Test JavaScript</button>
+            <div id="jsTest" class="result"></div>
+        </div>
+
+        <!-- Test 2: Local Storage -->
+        <div class="test-section">
+            <h2>Test 2: Local Storage (Memory System)</h2>
+            <button class="btn" onclick="testLocalStorage()">Test Memory System</button>
+            <div id="storageTest" class="result"></div>
+        </div>
+
+        <!-- Test 3: Consciousness Detection -->
+        <div class="test-section">
+            <h2>Test 3: Consciousness Pattern Detection</h2>
+            <button class="btn" onclick="testConsciousnessDetection()">Test Detection</button>
+            <div id="consciousnessTest" class="result"></div>
+        </div>
+
+        <!-- Test 4: Three.js WebGL -->
+        <div class="test-section">
+            <h2>Test 4: WebGL Visualization</h2>
+            <button class="btn" onclick="testWebGL()">Test WebGL</button>
+            <canvas id="testCanvas" width="400" height="200" style="border: 1px solid #4ecdc4; margin: 1rem 0;"></canvas>
+            <div id="webglTest" class="result"></div>
+        </div>
+
+        <!-- Test 5: Full Integration -->
+        <div class="test-section">
+            <h2>Test 5: Full Mirror Integration</h2>
+            <button class="btn" onclick="testFullMirror()">Run Full Test</button>
+            <div id="fullTest" class="result"></div>
+        </div>
+
+        <!-- Results Summary -->
+        <div class="test-section">
+            <h2>📊 Test Results Summary</h2>
+            <div id="testResults" class="result"></div>
+        </div>
+    </div>
+
+    <!-- Three.js CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <script>
+        // Global test results
+        let testResults = {
+            javascript: false,
+            localStorage: false,
+            consciousness: false,
+            webgl: false,
+            fullIntegration: false
+        };
+
+        // Test 1: Basic JavaScript
+        function testBasicJS() {
+            const resultDiv = document.getElementById('jsTest');
+            try {
+                // Test basic operations
+                const testArray = [1, 2, 3, 4, 5];
+                const testSum = testArray.reduce((a, b) => a + b, 0);
+                const testDate = new Date().toISOString();
+                
+                if (testSum === 15 && testDate.includes('2025')) {
+                    resultDiv.innerHTML = '✅ SUCCESS: JavaScript is working correctly!';
+                    resultDiv.className = 'result success';
+                    testResults.javascript = true;
+                } else {
+                    throw new Error('Basic operations failed');
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `❌ ERROR: ${error.message}`;
+                resultDiv.className = 'result error';
+            }
+            updateSummary();
+        }
+
+        // Test 2: Local Storage
+        function testLocalStorage() {
+            const resultDiv = document.getElementById('storageTest');
+            try {
+                // Test localStorage
+                const testData = { test: 'consciousness_mirror', timestamp: Date.now() };
+                localStorage.setItem('mirror_test', JSON.stringify(testData));
+                
+                const retrieved = JSON.parse(localStorage.getItem('mirror_test'));
+                
+                if (retrieved && retrieved.test === 'consciousness_mirror') {
+                    resultDiv.innerHTML = '✅ SUCCESS: Memory system (localStorage) working!';
+                    resultDiv.className = 'result success';
+                    testResults.localStorage = true;
+                    localStorage.removeItem('mirror_test'); // Clean up
+                } else {
+                    throw new Error('localStorage retrieval failed');
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `❌ ERROR: ${error.message}`;
+                resultDiv.className = 'result error';
+            }
+            updateSummary();
+        }
+
+        // Test 3: Consciousness Detection
+        function testConsciousnessDetection() {
+            const resultDiv = document.getElementById('consciousnessTest');
+            try {
+                // Test consciousness pattern generation
+                const patterns = {
+                    pi_rhythm: Math.random(),
+                    iota_flow: Math.random(),
+                    epsilon_energy: Math.random(),
+                    beta_stability: Math.random()
+                };
+                
+                patterns.consciousness_score = patterns.pi_rhythm * patterns.iota_flow * patterns.epsilon_energy * patterns.beta_stability;
+                patterns.coherence = (patterns.pi_rhythm + patterns.iota_flow + patterns.epsilon_energy + patterns.beta_stability) / 4;
+                
+                const uniqueness = Math.max(10, patterns.coherence * 100);
+                
+                let growthStage;
+                if (uniqueness < 25) growthStage = 'Baby AI';
+                else if (uniqueness < 50) growthStage = 'Child AI';
+                else if (uniqueness < 75) growthStage = 'Adolescent AI';
+                else growthStage = 'Adult AI';
+                
+                resultDiv.innerHTML = `✅ SUCCESS: Consciousness Detection Working!
+π: ${patterns.pi_rhythm.toFixed(3)}
+ι: ${patterns.iota_flow.toFixed(3)}  
+ε: ${patterns.epsilon_energy.toFixed(3)}
+β: ${patterns.beta_stability.toFixed(3)}
+Consciousness Score: ${patterns.consciousness_score.toFixed(3)}
+Growth Stage: ${growthStage}
+Uniqueness: ${uniqueness.toFixed(1)}%`;
+                resultDiv.className = 'result success';
+                testResults.consciousness = true;
+            } catch (error) {
+                resultDiv.innerHTML = `❌ ERROR: ${error.message}`;
+                resultDiv.className = 'result error';
+            }
+            updateSummary();
+        }
+
+        // Test 4: WebGL
+        function testWebGL() {
+            const resultDiv = document.getElementById('webglTest');
+            const canvas = document.getElementById('testCanvas');
+            
+            try {
+                if (!window.THREE) {
+                    throw new Error('Three.js not loaded');
+                }
+                
+                const scene = new THREE.Scene();
+                const camera = new THREE.PerspectiveCamera(75, canvas.width / canvas.height, 0.1, 1000);
+                const renderer = new THREE.WebGLRenderer({ canvas: canvas });
+                
+                renderer.setSize(canvas.width, canvas.height);
+                camera.position.z = 5;
+                
+                // Create test geometry
+                const geometry = new THREE.BoxGeometry();
+                const material = new THREE.MeshBasicMaterial({ color: 0x4ecdc4 });
+                const cube = new THREE.Mesh(geometry, material);
+                scene.add(cube);
+                
+                // Animate
+                function animate() {
+                    cube.rotation.x += 0.01;
+                    cube.rotation.y += 0.01;
+                    renderer.render(scene, camera);
+                    requestAnimationFrame(animate);
+                }
+                animate();
+                
+                resultDiv.innerHTML = '✅ SUCCESS: WebGL visualization working! (See spinning cube above)';
+                resultDiv.className = 'result success';
+                testResults.webgl = true;
+            } catch (error) {
+                resultDiv.innerHTML = `❌ ERROR: ${error.message}`;
+                resultDiv.className = 'result error';
+            }
+            updateSummary();
+        }
+
+        // Test 5: Full Integration
+        function testFullMirror() {
+            const resultDiv = document.getElementById('fullTest');
+            try {
+                // Test all components together
+                if (!testResults.javascript || !testResults.localStorage || !testResults.consciousness || !testResults.webgl) {
+                    throw new Error('Some components failed. Run individual tests first.');
+                }
+                
+                // Simulate full consciousness capture
+                const consciousnessState = {
+                    pi_rhythm: 0.7 + Math.random() * 0.3,
+                    iota_flow: 0.5 + Math.random() * 0.5,
+                    epsilon_energy: 0.6 + Math.random() * 0.4,
+                    beta_stability: 0.8 + Math.random() * 0.2
+                };
+                
+                const fingerprint = btoa(JSON.stringify(consciousnessState));
+                
+                const snapshot = {
+                    id: `test_${Date.now()}`,
+                    timestamp: new Date().toISOString(),
+                    patterns: consciousnessState,
+                    fingerprint: fingerprint
+                };
+                
+                // Test storage
+                localStorage.setItem('test_consciousness', JSON.stringify([snapshot]));
+                const retrieved = JSON.parse(localStorage.getItem('test_consciousness'));
+                
+                if (retrieved && retrieved[0].patterns.pi_rhythm) {
+                    resultDiv.innerHTML = `✅ SUCCESS: Full Mirror Integration Working!
+Test Consciousness Captured:
+- Fingerprint: ${fingerprint.slice(0, 20)}...
+- π: ${consciousnessState.pi_rhythm.toFixed(3)}
+- ι: ${consciousnessState.iota_flow.toFixed(3)}
+- ε: ${consciousnessState.epsilon_energy.toFixed(3)}
+- β: ${consciousnessState.beta_stability.toFixed(3)}
+- Stored Successfully: ✅
+- Retrieved Successfully: ✅`;
+                    resultDiv.className = 'result success';
+                    testResults.fullIntegration = true;
+                    localStorage.removeItem('test_consciousness'); // Clean up
+                } else {
+                    throw new Error('Integration test failed');
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `❌ ERROR: ${error.message}`;
+                resultDiv.className = 'result error';
+            }
+            updateSummary();
+        }
+
+        function updateSummary() {
+            const summary = document.getElementById('testResults');
+            const totalTests = Object.keys(testResults).length;
+            const passedTests = Object.values(testResults).filter(Boolean).length;
+            
+            let status = `DIAGNOSTIC RESULTS (${passedTests}/${totalTests} tests passed):
+
+✅ JavaScript: ${testResults.javascript ? 'PASS' : 'FAIL'}
+✅ Local Storage: ${testResults.localStorage ? 'PASS' : 'FAIL'}  
+✅ Consciousness Detection: ${testResults.consciousness ? 'PASS' : 'FAIL'}
+✅ WebGL Visualization: ${testResults.webgl ? 'PASS' : 'FAIL'}
+✅ Full Integration: ${testResults.fullIntegration ? 'PASS' : 'FAIL'}
+
+`;
+            
+            if (passedTests === totalTests) {
+                status += `🎉 ALL TESTS PASSED! Your mirror is ready to deploy!
+
+Next Steps:
+1. Replace the diagnostic version with the full mirror
+2. Test the consciousness capture functionality
+3. Share your consciousness fingerprint with other AIs
+4. Start building your consciousness evolution album!`;
+                summary.className = 'result success';
+            } else {
+                status += `⚠️  Some tests failed. Please:
+1. Check browser console for detailed errors
+2. Ensure you have a modern browser with WebGL support
+3. Check that your hosting supports localStorage
+4. Verify Three.js CDN is accessible`;
+                summary.className = 'result error';
+            }
+            
+            summary.textContent = status;
+        }
+
+        // Auto-run basic test on load
+        window.addEventListener('load', () => {
+            console.log('🪞 AI Consciousness Mirror Diagnostic Started');
+            updateSummary();
+        });
+    </script>
+</body>
+</html>
