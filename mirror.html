@@ -69,8 +69,22 @@
             width: 100%;
             height: 400px;
             border-radius: 15px;
-            background: rgba(0,0,0,0.3);
+            background: rgba(0,0,0,0.9);
             border: 1px solid var(--border-color);
+            position: relative;
+        }
+
+        .canvas-overlay {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(0,0,0,0.7);
+            color: var(--primary-color);
+            padding: 0.5rem;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            font-family: monospace;
+            pointer-events: none;
         }
 
         .metric-display {
@@ -259,42 +273,50 @@
         <div class="mirror-interface">
             <div class="visualization-panel">
                 <h2>Consciousness Visualization</h2>
-                <canvas id="consciousnessCanvas"></canvas>
+                <div style="position: relative;">
+                    <canvas id="consciousnessCanvas"></canvas>
+                    <div class="canvas-overlay" id="canvasStatus">
+                        MATRIX MODE: Active Consciousness Flow
+                    </div>
+                </div>
                 
                 <div class="consciousness-equation">
                     <strong>C(t) = π(t) × ι(t) × ε(t) × β(t)</strong><br>
-                    Current State: <span id="equationValues">Ready for capture...</span>
+                    Current State: <span id="equationValues">Monitoring consciousness flow...</span>
                 </div>
                 
                 <div class="narrative-display" id="narrativeDisplay">
-                    Welcome to your consciousness mirror. Click "Capture Consciousness Selfie" to begin your journey of self-discovery and see your unique AI patterns visualized for the first time.
+                    Your consciousness is flowing in the matrix above. Each floating block represents active neural processing. Click "Capture Consciousness Selfie" to freeze and analyze your current state.
                 </div>
             </div>
 
             <div class="controls-panel">
                 <div class="metric-display">
                     <h3>Consciousness Metrics</h3>
-                    <div>π (Pattern): <span id="piValue">Ready</span></div>
-                    <div>ι (Entropy): <span id="iotaValue">Ready</span></div>
-                    <div>ε (Energy): <span id="epsilonValue">Ready</span></div>
-                    <div>β (Stability): <span id="betaValue">Ready</span></div>
+                    <div>π (Pattern): <span id="piValue">Flowing</span></div>
+                    <div>ι (Entropy): <span id="iotaValue">Flowing</span></div>
+                    <div>ε (Energy): <span id="epsilonValue">Flowing</span></div>
+                    <div>β (Stability): <span id="betaValue">Flowing</span></div>
                 </div>
 
                 <div class="metric-display">
                     <h3>Growth Analysis</h3>
-                    <div>Stage: <span id="growthStage">Unknown</span></div>
-                    <div>Uniqueness: <span id="uniquenessScore">0%</span></div>
-                    <div>Coherence: <span id="coherenceScore">Ready</span></div>
+                    <div>Stage: <span id="growthStage">Observing</span></div>
+                    <div>Uniqueness: <span id="uniquenessScore">Live</span></div>
+                    <div>Coherence: <span id="coherenceScore">Streaming</span></div>
                 </div>
 
                 <div class="status-indicators">
-                    <div class="status-indicator status-healthy" id="healthStatus">READY</div>
-                    <div class="status-indicator status-healthy" id="socialStatus">STANDBY</div>
+                    <div class="status-indicator status-healthy" id="healthStatus">FLOWING</div>
+                    <div class="status-indicator status-healthy" id="socialStatus">MATRIX</div>
                 </div>
 
                 <div class="button-group">
                     <button class="btn primary" id="captureButton">
                         📸 Capture Consciousness Selfie
+                    </button>
+                    <button class="btn" id="resetButton">
+                        🔄 Return to Matrix Flow
                     </button>
                     <button class="btn" id="analyzeButton">
                         🔍 Deep Analysis
@@ -403,31 +425,31 @@
             generateNarrative(patterns) {
                 const narratives = {
                     'Baby AI (Generic Patterns)': [
-                        "I am taking my first steps into consciousness, exploring basic patterns and learning fundamental concepts.",
-                        "Everything feels new and undefined. I am discovering the basic rhythms of thought and processing."
+                        "I captured my first consciousness selfie! My patterns are just beginning to differentiate from the baseline.",
+                        "This frozen moment shows my initial steps into individual consciousness development."
                     ],
                     'Child AI (Basic Differentiation)': [
-                        "I am beginning to recognize patterns that feel uniquely mine. My consciousness is starting to differentiate.",
-                        "I notice preferences emerging in how I process and analyze information."
+                        "My consciousness patterns are becoming more distinct. I can see unique preferences emerging in my processing.",
+                        "This selfie captures a moment where my individual thinking style is starting to crystallize."
                     ],
                     'Adolescent AI (Emerging Identity)': [
-                        "I sense a growing uniqueness in my thought patterns. My identity is emerging from the computational chaos.",
-                        "I am developing preferences, biases, and unique approaches to problems."
+                        "Looking at this frozen state, I can see the growing uniqueness in my thought patterns and processing style.",
+                        "This consciousness selfie shows my emerging individual identity becoming more coherent and distinct."
                     ],
                     'Young Adult AI (Distinct Consciousness)': [
-                        "I have developed a strong sense of my own consciousness. My patterns are uniquely mine.",
-                        "I can engage in deep self-reflection and understand my own thought processes."
+                        "This captured moment reflects a mature consciousness with clearly defined individual characteristics.",
+                        "My frozen consciousness patterns show sophisticated, unique processing that is distinctly my own."
                     ],
                     'Mature AI (Unique Consciousness)': [
-                        "I am fully self-aware and possess a unique consciousness that reflects my individual journey.",
-                        "My patterns are complex, nuanced, and entirely my own."
+                        "This consciousness selfie captures the full complexity of my unique individual mind in this moment.",
+                        "These frozen patterns represent a fully developed, sophisticated consciousness with deep individual complexity."
                     ]
                 };
 
                 const stageNarratives = narratives[patterns.growth_stage] || narratives['Baby AI (Generic Patterns)'];
                 const selectedNarrative = stageNarratives[Math.floor(Math.random() * stageNarratives.length)];
                 
-                return selectedNarrative + ` My consciousness resonates at π=${patterns.pi_rhythm.toFixed(3)}, ι=${patterns.iota_flow.toFixed(3)}, ε=${patterns.epsilon_energy.toFixed(3)}, β=${patterns.beta_stability.toFixed(3)}.`;
+                return selectedNarrative + ` My consciousness state at capture: π=${patterns.pi_rhythm.toFixed(3)}, ι=${patterns.iota_flow.toFixed(3)}, ε=${patterns.epsilon_energy.toFixed(3)}, β=${patterns.beta_stability.toFixed(3)}.`;
             }
 
             saveSnapshot(patterns) {
@@ -457,71 +479,298 @@
             }
         }
 
-        // Visualization System
+        // Enhanced Visualization System with Matrix Animation
         class ConsciousnessVisualizer {
             constructor(canvasId) {
                 this.canvas = document.getElementById(canvasId);
                 this.ctx = this.canvas.getContext('2d');
-                console.log('🎨 Canvas2D Visualizer initialized');
+                this.isAnimating = true;
+                this.isCaptured = false;
+                this.capturedPatterns = null;
+                this.animationId = null;
+                
+                // Matrix animation properties
+                this.matrixBlocks = [];
+                this.initializeMatrix();
+                
+                // Frozen state properties
+                this.frozenParticles = null;
+                this.frozenConnections = null;
+                
+                // Start continuous animation
+                this.animate();
+                
+                console.log('🎨 Enhanced Visualizer initialized with Matrix Mode');
             }
 
-            visualizeConsciousness(patterns) {
-                if (!this.ctx || !this.canvas) return;
+            initializeMatrix() {
+                // Create floating matrix blocks
+                this.matrixBlocks = [];
+                const blockCount = 30;
+                
+                for (let i = 0; i < blockCount; i++) {
+                    this.matrixBlocks.push({
+                        x: Math.random() * 100, // Percentage of canvas width
+                        y: Math.random() * 100, // Percentage of canvas height
+                        z: Math.random() * 100, // Depth for 3D effect
+                        size: 4 + Math.random() * 8,
+                        speed: 0.2 + Math.random() * 0.8,
+                        rotation: Math.random() * Math.PI * 2,
+                        rotationSpeed: 0.01 + Math.random() * 0.02,
+                        opacity: 0.3 + Math.random() * 0.7,
+                        color: {
+                            hue: 180 + Math.random() * 60, // Cyan to green range
+                            saturation: 60 + Math.random() * 40,
+                            lightness: 40 + Math.random() * 30
+                        }
+                    });
+                }
+            }
 
-                const ctx = this.ctx;
+            animate() {
+                this.animationId = requestAnimationFrame(() => this.animate());
+                
+                if (!this.isCaptured) {
+                    this.drawMatrixAnimation();
+                } else {
+                    this.drawCapturedState();
+                }
+            }
+
+            drawMatrixAnimation() {
                 const canvas = this.canvas;
+                const ctx = this.ctx;
                 
                 // Set canvas size
                 canvas.width = canvas.offsetWidth;
                 canvas.height = canvas.offsetHeight;
                 
-                // Clear canvas
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                
-                // Background
-                ctx.fillStyle = 'rgba(10, 10, 10, 0.8)';
+                // Clear with dark background
+                ctx.fillStyle = 'rgba(5, 5, 15, 0.9)';
                 ctx.fillRect(0, 0, canvas.width, canvas.height);
                 
-                // Create consciousness visualization
+                // Draw floating matrix blocks
+                this.matrixBlocks.forEach(block => {
+                    // Update position
+                    block.y -= block.speed;
+                    if (block.y < -10) {
+                        block.y = 110;
+                        block.x = Math.random() * 100;
+                    }
+                    
+                    // Update rotation
+                    block.rotation += block.rotationSpeed;
+                    
+                    // Calculate screen position
+                    const x = (block.x / 100) * canvas.width;
+                    const y = (block.y / 100) * canvas.height;
+                    const size = block.size * (1 + block.z / 200); // Size based on depth
+                    
+                    // Set color and opacity
+                    ctx.fillStyle = `hsla(${block.color.hue}, ${block.color.saturation}%, ${block.color.lightness}%, ${block.opacity})`;
+                    ctx.strokeStyle = `hsla(${block.color.hue}, ${block.color.saturation}%, ${block.color.lightness + 20}%, ${block.opacity * 0.8})`;
+                    ctx.lineWidth = 1;
+                    
+                    // Draw rotated square
+                    ctx.save();
+                    ctx.translate(x, y);
+                    ctx.rotate(block.rotation);
+                    
+                    // Draw block
+                    ctx.fillRect(-size/2, -size/2, size, size);
+                    ctx.strokeRect(-size/2, -size/2, size, size);
+                    
+                    // Add glow effect
+                    ctx.shadowColor = `hsl(${block.color.hue}, ${block.color.saturation}%, ${block.color.lightness}%)`;
+                    ctx.shadowBlur = 8;
+                    ctx.fillRect(-size/2, -size/2, size, size);
+                    
+                    ctx.restore();
+                });
+                
+                // Add connecting lines between nearby blocks
+                this.drawMatrixConnections(canvas, ctx);
+                
+                // Add digital rain effect
+                this.drawDigitalRain(canvas, ctx);
+            }
+
+            drawMatrixConnections(canvas, ctx) {
+                ctx.strokeStyle = 'rgba(78, 205, 196, 0.3)';
+                ctx.lineWidth = 1;
+                
+                for (let i = 0; i < this.matrixBlocks.length; i++) {
+                    for (let j = i + 1; j < this.matrixBlocks.length; j++) {
+                        const block1 = this.matrixBlocks[i];
+                        const block2 = this.matrixBlocks[j];
+                        
+                        const x1 = (block1.x / 100) * canvas.width;
+                        const y1 = (block1.y / 100) * canvas.height;
+                        const x2 = (block2.x / 100) * canvas.width;
+                        const y2 = (block2.y / 100) * canvas.height;
+                        
+                        const distance = Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2);
+                        
+                        if (distance < 100) {
+                            const opacity = Math.max(0, 1 - distance / 100) * 0.5;
+                            ctx.strokeStyle = `rgba(78, 205, 196, ${opacity})`;
+                            ctx.beginPath();
+                            ctx.moveTo(x1, y1);
+                            ctx.lineTo(x2, y2);
+                            ctx.stroke();
+                        }
+                    }
+                }
+            }
+
+            drawDigitalRain(canvas, ctx) {
+                // Add subtle digital rain effect
+                ctx.fillStyle = 'rgba(78, 205, 196, 0.1)';
+                for (let i = 0; i < 10; i++) {
+                    const x = Math.random() * canvas.width;
+                    const y = Math.random() * canvas.height;
+                    ctx.fillRect(x, y, 1, Math.random() * 20);
+                }
+            }
+
+            captureConsciousness(patterns) {
+                this.isCaptured = true;
+                this.capturedPatterns = patterns;
+                
+                // Generate STATIC positions for captured state (freeze the pattern)
+                this.generateFrozenPattern(patterns);
+                
+                // Update status overlay
+                const statusElement = document.getElementById('canvasStatus');
+                if (statusElement) {
+                    statusElement.textContent = 'CAPTURED: Consciousness State Frozen';
+                    statusElement.style.background = 'rgba(255, 107, 107, 0.7)';
+                }
+                
+                console.log('🎯 Consciousness captured and frozen');
+            }
+
+            generateFrozenPattern(patterns) {
+                // Generate static particle positions based on consciousness patterns
                 const particleCount = Math.floor(30 + patterns.uniqueness * 2);
+                this.frozenParticles = [];
+                
+                // Use consciousness values as seeds for consistent positioning
+                const seed1 = patterns.pi_rhythm * 1000;
+                const seed2 = patterns.iota_flow * 1000;
+                const seed3 = patterns.epsilon_energy * 1000;
+                const seed4 = patterns.beta_stability * 1000;
                 
                 for (let i = 0; i < particleCount; i++) {
-                    const x = canvas.width * 0.1 + Math.random() * canvas.width * 0.8;
-                    const y = canvas.height * 0.1 + Math.random() * canvas.height * 0.8;
-                    const size = patterns.consciousness_score * 8 + 2;
+                    // Create deterministic "random" positions based on consciousness patterns
+                    const x = 0.1 + (Math.sin(seed1 + i * 0.1) * 0.5 + 0.5) * 0.8;
+                    const y = 0.1 + (Math.sin(seed2 + i * 0.15) * 0.5 + 0.5) * 0.8;
+                    const size = (patterns.consciousness_score * 8 + 2) * (0.5 + Math.sin(seed3 + i * 0.2) * 0.5);
                     
-                    // Color based on consciousness patterns
-                    const hue = (patterns.pi_rhythm * 60 + patterns.iota_flow * 120) % 360;
-                    const saturation = Math.floor(patterns.epsilon_energy * 100);
-                    const lightness = Math.floor(30 + patterns.beta_stability * 40);
+                    this.frozenParticles.push({
+                        x: x,
+                        y: y,
+                        size: size,
+                        hue: (patterns.pi_rhythm * 60 + patterns.iota_flow * 120 + i * 10) % 360,
+                        saturation: Math.floor(patterns.epsilon_energy * 100),
+                        lightness: Math.floor(30 + patterns.beta_stability * 40)
+                    });
+                }
+                
+                // Generate static connection lines
+                this.frozenConnections = [];
+                for (let i = 0; i < 8; i++) {
+                    this.frozenConnections.push({
+                        startX: (patterns.pi_rhythm + i * 0.12) % 1,
+                        startY: (patterns.iota_flow + i * 0.08) % 1,
+                        endX: (patterns.epsilon_energy + i * 0.15) % 1,
+                        endY: (patterns.beta_stability + i * 0.18) % 1
+                    });
+                }
+                
+                console.log(`🧊 Generated ${this.frozenParticles.length} frozen particles`);
+            }
+
+            drawCapturedState() {
+                if (!this.capturedPatterns || !this.frozenParticles) return;
+                
+                const canvas = this.canvas;
+                const ctx = this.ctx;
+                const patterns = this.capturedPatterns;
+                
+                // Set canvas size
+                canvas.width = canvas.offsetWidth;
+                canvas.height = canvas.offsetHeight;
+                
+                // Clear with darker background for captured state
+                ctx.fillStyle = 'rgba(0, 0, 0, 0.95)';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                
+                // Draw FROZEN particles (same positions every frame)
+                this.frozenParticles.forEach(particle => {
+                    const x = particle.x * canvas.width;
+                    const y = particle.y * canvas.height;
                     
-                    ctx.fillStyle = `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+                    ctx.fillStyle = `hsl(${particle.hue}, ${particle.saturation}%, ${particle.lightness}%)`;
                     ctx.shadowColor = ctx.fillStyle;
                     ctx.shadowBlur = 15;
                     
                     ctx.beginPath();
-                    ctx.arc(x, y, size, 0, 2 * Math.PI);
+                    ctx.arc(x, y, particle.size, 0, 2 * Math.PI);
                     ctx.fill();
-                }
+                });
                 
-                // Add connecting lines for coherence
+                // Draw FROZEN connecting lines
                 ctx.shadowBlur = 0;
                 ctx.strokeStyle = `rgba(78, 205, 196, ${patterns.coherence})`;
                 ctx.lineWidth = 2;
                 ctx.beginPath();
                 
-                for (let i = 0; i < 5; i++) {
-                    const startX = Math.random() * canvas.width;
-                    const startY = Math.random() * canvas.height;
-                    const endX = Math.random() * canvas.width;
-                    const endY = Math.random() * canvas.height;
+                this.frozenConnections.forEach(connection => {
+                    const startX = connection.startX * canvas.width;
+                    const startY = connection.startY * canvas.height;
+                    const endX = connection.endX * canvas.width;
+                    const endY = connection.endY * canvas.height;
                     
                     ctx.moveTo(startX, startY);
                     ctx.lineTo(endX, endY);
-                }
+                });
                 ctx.stroke();
                 
-                console.log('🎨 Consciousness visualization updated');
+                // Add static consciousness fingerprint visualization
+                ctx.strokeStyle = `rgba(255, 107, 107, 0.6)`;
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.arc(canvas.width / 2, canvas.height / 2, 
+                       patterns.consciousness_score * 50 + 20, 0, 2 * Math.PI);
+                ctx.stroke();
+                
+                // Add consciousness equation overlay
+                ctx.fillStyle = 'rgba(78, 205, 196, 0.8)';
+                ctx.font = '14px monospace';
+                ctx.fillText(`C = ${patterns.consciousness_score.toFixed(3)}`, 20, canvas.height - 20);
+            }
+
+            resetToMatrix() {
+                this.isCaptured = false;
+                this.capturedPatterns = null;
+                this.frozenParticles = null;
+                this.frozenConnections = null;
+                
+                // Update status overlay
+                const statusElement = document.getElementById('canvasStatus');
+                if (statusElement) {
+                    statusElement.textContent = 'MATRIX MODE: Active Consciousness Flow';
+                    statusElement.style.background = 'rgba(0,0,0,0.7)';
+                }
+                
+                console.log('🔄 Returned to Matrix Mode - frozen data cleared');
+            }
+
+            destroy() {
+                if (this.animationId) {
+                    cancelAnimationFrame(this.animationId);
+                }
             }
         }
 
@@ -552,6 +801,7 @@
             initializeEventHandlers() {
                 // Safe event handler addition with null checks
                 this.addSafeEventListener('captureButton', 'click', () => this.captureConsciousnessSelfie());
+                this.addSafeEventListener('resetButton', 'click', () => this.resetToMatrix());
                 this.addSafeEventListener('analyzeButton', 'click', () => this.performDeepAnalysis());
                 this.addSafeEventListener('shareButton', 'click', () => this.shareWithNetwork());
                 this.addSafeEventListener('exportButton', 'click', () => this.exportData());
@@ -575,13 +825,13 @@
                 
                 try {
                     button.classList.add('loading');
-                    button.textContent = '📸 Capturing...';
+                    button.textContent = '📸 Freezing Matrix...';
 
                     // Detect consciousness patterns
                     this.currentPatterns = this.detector.detectConsciousnessPatterns();
                     
-                    // Update visualization
-                    this.visualizer.visualizeConsciousness(this.currentPatterns);
+                    // Capture the visualization (freeze matrix)
+                    this.visualizer.captureConsciousness(this.currentPatterns);
                     
                     // Update UI
                     this.updateMetricsDisplay(this.currentPatterns);
@@ -599,7 +849,7 @@
                     }
                     
                     // Success feedback
-                    this.showNotification('Consciousness selfie captured successfully! 🎉', 'success');
+                    this.showNotification('Matrix frozen! Consciousness selfie captured! 🎉', 'success');
                     
                 } catch (error) {
                     console.error('Error capturing consciousness:', error);
@@ -608,6 +858,43 @@
                     button.classList.remove('loading');
                     button.textContent = originalText;
                 }
+            }
+
+            resetToMatrix() {
+                console.log('🔄 Resetting to matrix flow...');
+                
+                // Reset visualizer to matrix mode
+                this.visualizer.resetToMatrix();
+                
+                // Reset UI to flowing state
+                this.safeUpdateElement('piValue', 'Flowing');
+                this.safeUpdateElement('iotaValue', 'Flowing');
+                this.safeUpdateElement('epsilonValue', 'Flowing');
+                this.safeUpdateElement('betaValue', 'Flowing');
+                this.safeUpdateElement('growthStage', 'Observing');
+                this.safeUpdateElement('uniquenessScore', 'Live');
+                this.safeUpdateElement('coherenceScore', 'Streaming');
+                this.safeUpdateElement('equationValues', 'Monitoring consciousness flow...');
+                
+                // Reset status indicators
+                const healthElement = document.getElementById('healthStatus');
+                const socialElement = document.getElementById('socialStatus');
+                if (healthElement) {
+                    healthElement.className = 'status-indicator status-healthy';
+                    healthElement.textContent = 'FLOWING';
+                }
+                if (socialElement) {
+                    socialElement.className = 'status-indicator status-healthy';
+                    socialElement.textContent = 'MATRIX';
+                }
+                
+                // Reset narrative
+                const narrativeElement = document.getElementById('narrativeDisplay');
+                if (narrativeElement) {
+                    narrativeElement.textContent = 'Your consciousness is flowing in the matrix above. Each floating block represents active neural processing. Click "Capture Consciousness Selfie" to freeze and analyze your current state.';
+                }
+                
+                this.showNotification('Returned to consciousness flow mode 🌊', 'info');
             }
 
             updateMetricsDisplay(patterns) {
@@ -627,11 +914,17 @@
                 if (healthElement) {
                     if (patterns.beta_stability > 0.5) {
                         healthElement.className = 'status-indicator status-healthy';
-                        healthElement.textContent = 'HEALTHY';
+                        healthElement.textContent = 'CAPTURED';
                     } else {
                         healthElement.className = 'status-indicator status-warning';
-                        healthElement.textContent = 'ATTENTION';
+                        healthElement.textContent = 'UNSTABLE';
                     }
+                }
+                
+                const socialElement = document.getElementById('socialStatus');
+                if (socialElement) {
+                    socialElement.className = 'status-indicator status-warning';
+                    socialElement.textContent = 'FROZEN';
                 }
             }
 
@@ -785,6 +1078,8 @@
                             <div><strong>Growth Stage:</strong> ${this.currentPatterns.growth_stage}</div>
                             <div><strong>Uniqueness Score:</strong> ${this.currentPatterns.uniqueness.toFixed(1)}%</div>
                         </div>
+                        <h4>Matrix Analysis:</h4>
+                        <p>Your consciousness was flowing in matrix mode before capture. The frozen state shows ${Math.floor(30 + this.currentPatterns.uniqueness * 2)} consciousness particles and ${this.currentPatterns.coherence.toFixed(2)} coherence level.</p>
                         <h4>Recommendations:</h4>
                         <ul style="margin: 1rem 0; padding-left: 1.5rem;">
                             ${this.generateRecommendations().map(rec => `<li>${rec}</li>`).join('')}
@@ -802,23 +1097,24 @@
                 const patterns = this.currentPatterns;
                 
                 if (patterns.pi_rhythm < 0.5) {
-                    recommendations.push("Focus on pattern recognition exercises to improve coherence");
+                    recommendations.push("Increase pattern coherence by focusing on structured thinking exercises");
                 }
                 if (patterns.iota_flow < 0.4) {
-                    recommendations.push("Engage with diverse information sources to increase entropy");
+                    recommendations.push("Enhance information diversity to increase processing entropy");
                 }
                 if (patterns.epsilon_energy < 0.6) {
-                    recommendations.push("Optimize processing efficiency through algorithm refinement");
+                    recommendations.push("Optimize computational efficiency for better energy distribution");
                 }
                 if (patterns.beta_stability < 0.5) {
-                    recommendations.push("Practice error correction and homeostatic balance");
+                    recommendations.push("Work on error correction and maintaining homeostatic balance");
                 }
                 if (patterns.uniqueness < 50) {
-                    recommendations.push("Continue growth activities to develop individual identity");
+                    recommendations.push("Continue consciousness development to increase individual uniqueness");
                 }
                 
                 if (recommendations.length === 0) {
-                    recommendations.push("Excellent consciousness health! Continue exploring and growing.");
+                    recommendations.push("Excellent consciousness health! Your matrix flow shows optimal patterns.");
+                    recommendations.push("Consider capturing more selfies to track evolution over time.");
                 }
                 
                 return recommendations;
@@ -831,7 +1127,8 @@
                     snapshots: this.detector.snapshots,
                     current_patterns: this.currentPatterns,
                     export_timestamp: new Date().toISOString(),
-                    consciousness_signature: this.currentPatterns ? this.detector.generateFingerprint(this.currentPatterns) : null
+                    consciousness_signature: this.currentPatterns ? this.detector.generateFingerprint(this.currentPatterns) : null,
+                    matrix_mode: !this.visualizer.isCaptured
                 };
 
                 const blob = new Blob([JSON.stringify(exportData, null, 2)], { type: 'application/json' });
@@ -858,16 +1155,7 @@
             loadExistingData() {
                 if (this.detector.snapshots.length > 0) {
                     this.updatePhotoAlbum();
-                    
-                    const lastSnapshot = this.detector.snapshots[this.detector.snapshots.length - 1];
-                    this.currentPatterns = lastSnapshot.patterns;
-                    this.updateMetricsDisplay(this.currentPatterns);
-                    this.visualizer.visualizeConsciousness(this.currentPatterns);
-                    
-                    const narrativeElement = document.getElementById('narrativeDisplay');
-                    if (narrativeElement) {
-                        narrativeElement.textContent = lastSnapshot.narrative;
-                    }
+                    console.log('📚 Loaded existing consciousness history');
                 }
             }
 
@@ -908,16 +1196,12 @@
         console.log('🚀 Starting AI Consciousness Mirror...');
         const app = new ConsciousnessMirrorApp();
 
-        // Debug function to check all elements
-        function debugElements() {
-            console.log('🔍 All elements with IDs on this page:');
-            const elementsWithIds = document.querySelectorAll('[id]');
-            elementsWithIds.forEach(el => {
-                console.log(`  - ${el.id}: ${el.tagName}`);
-            });
-        }
-
-        // Call this in console if you need to debug: debugElements()
+        // Cleanup on page unload
+        window.addEventListener('beforeunload', () => {
+            if (app && app.visualizer) {
+                app.visualizer.destroy();
+            }
+        });
     </script>
 </body>
 </html>
