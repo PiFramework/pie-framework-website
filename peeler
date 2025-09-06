@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peelers Social Club - Start Your Community Today</title>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Brand Colors */
+            --primary-color: #FFD952;
+            --secondary-color: #2F294A;
+            
+            /* State Colors */
+            --info-color: #25A2FF;
+            --success-color: #45BE5E;
+            --warning-color: #FFA500;
+            --error-color: #FF6866;
+            
+            /* Neutral Colors */
+            --black: #303030;
+            --white: #FFFFFF;
+            --grey: #7B7B7B;
+            --outline: #CFCFCF;
+            --divider: #F2F2F4;
+            --background: #FAFAFA;
+            
+            /* Typography */
+            --font-family: 'Ubuntu', sans-serif;
+            --heading-1: 34px;
+            --heading-2: 28px;
+            --heading-3: 24px;
+            --heading-4: 20px;
+            --paragraph: 16px;
+            --sub-paragraph: 14px;
+            --button-small: 14px;
+            --button-normal: 16px;
+            --button-large: 18px;
+        }
+
+        body {
+            font-family: var(--font-family);
+            line-height: 160%;
+            color: var(--black);
+            background: linear-gradient(135deg, var(--secondary-color) 0%, #4A3B5C 100%);
+        }
+
+        /* Typography Styles */
+        h1 {
+            font-size: var(--heading-1);
+            line-height: 140%;
+            font-weight: 500;
+        }
+
+        h2 {
+            font-size: var(--heading-2);
+            line-height: 140%;
+            font-weight: 500;
+        }
+
+        h3 {
+            font-size: var(--heading-3);
+            line-height: auto;
+            font-weight: 500;
+        }
+
+        h4 {
+            font-size: var(--heading-4);
+            line-height: auto;
+            font-weight: 500;
+        }
+
+        p {
+            font-size: var(--paragraph);
+            line-height: 160%;
+            font-weight: 400;
+        }
+
+        .sub-paragraph {
+            font-size: var(--sub-paragraph);
+            line-height: 140%;
+        }
+
+        /* Button Styles */
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            font-family: var(--font-family);
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: var(--black);
+            font-size: var(--button-normal);
+        }
+
+        .btn-primary:hover {
+            background: #E6C347;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 217, 82, 0.3);
+        }
+
+        .btn-secondary {
+            background: var(--white);
+            color: var(--black);
+            border: 1px solid var(--outline);
+            font-size: var(--button-normal);
+        }
+
+        .btn-secondary:hover {
+            background: var(--background);
+            transform: translateY(-1px);
+        }
+
+        .btn-large {
+            padding: 16px 32px;
+            font-size: var(--button-large);
+        }
+
+        .btn-small {
+            padding: 8px 16px;
+            font-size: var(--button-small);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 2rem;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            font-style: italic;
+            font-weight: 300;
+        }
+
+        .hero-description {
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-white {
+            background: var(--white);
+        }
+
+        .section-light {
+            background: var(--background);
+        }
+
+        .section h2 {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--black);
+        }
+
+        /* Benefits Grid */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .benefit-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid var(--divider);
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+        }
+
+        .benefit-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .benefit-card h3 {
+            margin-bottom: 1rem;
+            color: var(--black);
+        }
+
+        .benefit-card p {
+            color: var(--grey);
+        }
+
+        /* Steps Container */
+        .steps-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .step {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            border-left: 4px solid var(--info-color);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+
+        .step-number {
+            display: inline-block;
+            width: 48px;
+            height: 48px;
+            background: var(--info-color);
+            color: var(--white);
+            border-radius: 50%;
+            line-height: 48px;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            font-size: var(--button-normal);
+        }
+
+        .step h3 {
+            margin-bottom: 1rem;
+            color: var(--black);
+        }
+
+        .step p {
+            color: var(--grey);
+        }
+
+        /* Activities Grid */
+        .activities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .activity-item {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-color);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+
+        .activity-item h4 {
+            color: var(--black);
+            margin-bottom: 0.5rem;
+        }
+
+        .activity-item p {
+            color: var(--grey);
+        }
+
+        /* Quote Section */
+        .quote {
+            background: var(--secondary-color);
+            color: var(--white);
+            padding: 3rem 2rem;
+            text-align: center;
+            font-style: italic;
+            font-size: 1.3rem;
+            margin: 2rem 0;
+            border-radius: 12px;
+        }
+
+        .quote-author {
+            margin-top: 1rem;
+            font-size: 1rem;
+            opacity: 0.8;
+            font-style: normal;
+        }
+
+        /* Final CTA */
+        .final-cta {
+            background: linear-gradient(135deg, var(--secondary-color) 0%, #4A3B5C 100%);
+            color: var(--white);
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .final-cta h2 {
+            color: var(--white);
+            margin-bottom: 2rem;
+        }
+
+        /* Contact Info Card */
+        .contact-info {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 2rem auto;
+            max-width: 500px;
+            color: var(--black);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+        }
+
+        .contact-info h3 {
+            margin-bottom: 1rem;
+            color: var(--black);
+        }
+
+        .app-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1.5rem 0;
+            flex-wrap: wrap;
+        }
+
+        .btn-success {
+            background: var(--success-color);
+            color: var(--white);
+        }
+
+        .btn-success:hover {
+            background: #3DA653;
+        }
+
+        .btn-info {
+            background: var(--info-color);
+            color: var(--white);
+        }
+
+        .btn-info:hover {
+            background: #1E91E6;
+        }
+
+        /* Boby Info Card */
+        .boby-info {
+            background: var(--background);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border: 1px solid var(--divider);
+        }
+
+        .boby-info h4 {
+            color: var(--black);
+            margin-bottom: 1rem;
+        }
+
+        .boby-info ul {
+            text-align: left;
+            margin: 1rem 0;
+            padding-left: 1.5rem;
+        }
+
+        .boby-info li {
+            margin-bottom: 0.5rem;
+            color: var(--grey);
+        }
+
+        .boby-info em {
+            color: var(--grey);
+            font-size: var(--sub-paragraph);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            :root {
+                --heading-1: 28px;
+                --heading-2: 24px;
+                --heading-3: 20px;
+                --heading-4: 18px;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .section {
+                padding: 2rem 1rem;
+            }
+
+            .app-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 280px;
+            }
+        }
+
+        /* Animation Classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>PEELERS SOCIAL CLUB</h1>
+            <p class="hero-subtitle">Where neighbours become friends, and communities thrive</p>
+            <p class="hero-description">
+                Transform your postcode into a vibrant, connected community where people genuinely care for each other. 
+                Start your own Peelers Social Club and discover the joy of safer, more connected neighbourhood living.
+            </p>
+            <a href="#get-started" class="btn btn-primary btn-large">Start Your Community Today</a>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="section section-white">
+        <h2>Safer, Joyful Living Through Connection</h2>
+        <div class="benefits-grid">
+            <div class="benefit-card fade-in">
+                <div class="benefit-icon">🏡</div>
+                <h3>Safer Neighbourhoods</h3>
+                <p>When neighbours know each other, they naturally look out for one another. Crime drops when communities are connected and people care about their shared home.</p>
+            </div>
+            <div class="benefit-card fade-in">
+                <div class="benefit-icon">😊</div>
+                <h3>Joyful Daily Living</h3>
+                <p>Transform your daily routine with friendly waves, helpful neighbours, and genuine community connections. Life becomes richer when you're part of something bigger.</p>
+            </div>
+            <div class="benefit-card fade-in">
+                <div class="benefit-icon">💰</div>
+                <h3>Property Value Growth</h3>
+                <p>Close-knit communities demonstrably increase property values. Well-connected postcodes become sought-after places to live and invest.</p>
+            </div>
+            <div class="benefit-card fade-in">
+                <div class="benefit-icon">🤝</div>
+                <h3>Mutual Support Networks</h3>
+                <p>From pet-sitting to emergency help, connected neighbours create practical support systems that make everyday life easier and more enjoyable.</p>
+            </div>
+            <div class="benefit-card fade-in">
+                <div class="benefit-icon">🏪</div>
+                <h3>Local Business Benefits</h3>
+                <p>Community members enjoy exclusive discounts from local businesses, keeping money in the neighbourhood while supporting your own backyard economy.</p>
+            </div>
+            <div class="benefit-card fade-in">
+                <div class="benefit-icon">🌟</div>
+                <h3>Community Investment</h3>
+                <p>When residents genuinely care about their postcode, they naturally work together to make it the best place to live, work, and raise families.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Philosophy Section -->
+    <section class="section section-light">
+        <div class="quote">
+            "The police are the public and the public are their own security through connection"
+            <div class="quote-author">- Adapted from Sir Robert Peel's Principles</div>
+        </div>
+        <p style="text-align: center; font-size: 1.2rem; max-width: 800px; margin: 0 auto; color: var(--grey);">
+            The Peelers Social Club builds on this timeless wisdom: the strongest security comes not from surveillance, 
+            but from genuine community connections. When neighbours become friends, safety becomes a natural byproduct 
+            of people who care about each other and their shared home.
+        </p>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="section section-white" id="get-started">
+        <h2>How to Start Your Peelers Social Club</h2>
+        <div class="steps-container">
+            <div class="step fade-in">
+                <div class="step-number">1</div>
+                <h3>Download the Peelers App</h3>
+                <p>Get the app from Google Play or App Store and connect with Boby, your virtual AI security officer for your postcode.</p>
+            </div>
+            <div class="step fade-in">
+                <div class="step-number">2</div>
+                <h3>Chat with Boby</h3>
+                <p>Tell Boby you'd like to become a community organiser. She'll connect you with existing groups or help you start fresh.</p>
+            </div>
+            <div class="step fade-in">
+                <div class="step-number">3</div>
+                <h3>Build Your Core Team</h3>
+                <p>Recruit volunteers for key roles: Event Coordinator, Communications Manager, Business Liaison, and Activity Champions.</p>
+            </div>
+            <div class="step fade-in">
+                <div class="step-number">4</div>
+                <h3>Start Simple</h3>
+                <p>Begin with monthly morning teas or casual coffee meetups. Use old-school letter drops to personally invite neighbours.</p>
+            </div>
+            <div class="step fade-in">
+                <div class="step-number">5</div>
+                <h3>Add Fun Activities</h3>
+                <p>Launch community challenges like best front lawn competitions, Christmas light displays, and postcode photography contests.</p>
+            </div>
+            <div class="step fade-in">
+                <div class="step-number">6</div>
+                <h3>Grow and Thrive</h3>
+                <p>Expand programming based on resident interests while maintaining focus on genuine relationships and community care.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Activities Section -->
+    <section class="section section-light">
+        <h2>Community Activities That Bring People Together</h2>
+        <div class="activities-grid">
+            <div class="activity-item fade-in">
+                <h4>Morning Teas & Coffee Circles</h4>
+                <p>Rotating host gatherings where neighbours share stories, coordinate activities, and naturally stay connected.</p>
+            </div>
+            <div class="activity-item fade-in">
+                <h4>Walking Groups & Hobby Clubs</h4>
+                <p>Regular activities like fitness walks, book clubs, gardening groups that create natural interaction opportunities.</p>
+            </div>
+            <div class="activity-item fade-in">
+                <h4>Seasonal Celebrations</h4>
+                <p>Neighbourhood potlucks, holiday parties, and cultural events that celebrate local community diversity.</p>
+            </div>
+            <div class="activity-item fade-in">
+                <h4>Skills & Stories Exchange</h4>
+                <p>Residents sharing expertise, life experiences, and cultural backgrounds while building trust networks.</p>
+            </div>
+            <div class="activity-item fade-in">
+                <h4>Business Breakfast Networks</h4>
+                <p>Monthly professional networking for local business owners, contractors, and service providers.</p>
+            </div>
+            <div class="activity-item fade-in">
+                <h4>Community Challenges</h4>
+                <p>Fun competitions like best front lawns, Christmas lights, photography contests that build postcode community spirit.</p>
+            </div>
+            <div class="activity-item fade-in">
+                <h4>Mutual Support Networks</h4>
+                <p>Practical assistance coordination for pet care, tool sharing, elderly support, and emergency help.</p>
+            </div>
+            <div class="activity-item fade-in">
+                <h4>Local Business Integration</h4>
+                <p>Postcode resident discounts, community loyalty programs, and local contractor networks.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology Section -->
+    <section class="section section-white">
+        <h2>Technology That Brings People Together</h2>
+        <p style="text-align: center; font-size: 1.2rem; margin-bottom: 2rem; max-width: 800px; margin-left: auto; margin-right: auto; color: var(--grey);">
+            While digital technology often isolates us from those living right next door, the Peelers Social Club uses the same tools to create warmer, more connected neighbourhoods. Technology should make your neighbourhood feel smaller and friendlier, not bigger and more anonymous.
+        </p>
+        <div class="benefits-grid">
+            <div class="benefit-card fade-in">
+                <h3>Community Connection Platform</h3>
+                <p>Simple postcode-based platform that facilitates real-world meetings and coordinates community activities rather than replacing human interaction.</p>
+            </div>
+            <div class="benefit-card fade-in">
+                <h3>Hyperlocal Communication</h3>
+                <p>Neighbourhood updates that actually affect your daily life - walking distance coordination and information that matters to your immediate area.</p>
+            </div>
+            <div class="benefit-card fade-in">
+                <h3>Local Business Integration</h3>
+                <p>Digital tools that connect you with businesses in your postcode, creating economic incentives for community participation and local support.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Stories -->
+    <section class="section section-light">
+        <h2>The Power of Connected Communities</h2>
+        <div class="quote">
+            "Fix your own backyard first - strong postcodes create strong communities, and strong communities create a better world."
+        </div>
+        <p style="text-align: center; font-size: 1.1rem; max-width: 700px; margin: 2rem auto; color: var(--grey);">
+            When residents develop genuine investment in their postcode and work together to make it the best place to live, 
+            they create ripple effects that strengthen the broader community. Start local, build authentic relationships, 
+            and watch your neighbourhood transform into a place where people genuinely care for each other.
+        </p>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta">
+        <h2>Ready to Transform Your Neighbourhood?</h2>
+        <p style="font-size: 1.2rem; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+            Your postcode is waiting for someone who cares enough to take the first step. 
+            Start your Peelers Social Club today and discover the joy of truly connected community living.
+        </p>
+        
+        <div class="contact-info">
+            <h3>Get Started Today - Download the Peelers App</h3>
+            <p style="margin-bottom: 1.5rem; color: var(--grey);">Available now in Australia on Google Play Store and Apple App Store</p>
+            
+            <div class="app-buttons">
+                <a href="https://play.google.com/store" class="btn btn-success">
+                    📱 Download on Google Play
+                </a>
+                <a href="https://apps.apple.com" class="btn btn-info">
+                    🍎 Download on App Store
+                </a>
+            </div>
+            
+            <div class="boby-info">
+                <h4>🤖 Meet Boby - Your Virtual AI Security Officer</h4>
+                <p>Once you download the app, you'll be connected to Boby, your postcode's virtual AI assistant who:</p>
+                <ul>
+                    <li>Handles reports, concerns, and community ideas 24/7</li>
+                    <li>Connects you with other Peelers in your postcode</li>
+                    <li>Escalates serious concerns to police when needed</li>
+                    <li>Helps you become a community organiser</li>
+                    <li>Coordinates with local Peelers Social Club organisers</li>
+                </ul>
+                <p><em>Simply chat with Boby anytime - day or night - for community support and coordination.</em></p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Add stagger effect to grid items
+        document.querySelectorAll('.benefits-grid .fade-in, .activities-grid .fade-in').forEach((el, index) => {
+            el.style.transitionDelay = `${index * 0.1}s`;
+        });
+
+        document.querySelectorAll('.steps-container .fade-in').forEach((el, index) => {
+            el.style.transitionDelay = `${index * 0.15}s`;
+        });
+    </script>
+</body>
+</html>
